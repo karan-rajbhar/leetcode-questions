@@ -9,9 +9,7 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         longestPalindromeSubString = ""
-        if len(s) == 1:
-            longestPalindromeSubString = s
-        if self.checkIfPalindrome(s):
+        if len(s) == 1 or self.checkIfPalindrome(s) :
             return s
 
         for first_index in range(0, len(s)+1):
