@@ -64,7 +64,5 @@ class Solution:
             
 
 
-solution = Solution()
-print(solution.romanToInt('MCMXCIV'))
 # @lc code=end
 
