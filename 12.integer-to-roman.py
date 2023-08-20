@@ -8,7 +8,7 @@
 # @lc code=start
 class Solution:
     def intToRoman(self, num: int) -> str:
-        self.roman_map = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
+        roman_map = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
         num=1994
 
 
@@ -22,13 +22,24 @@ class Solution:
             num=int(num/10)
             if num <= 0:
                 break
-        print(last_digit_list[::-1])        
-    def returnRoman(self,num):
-        if num == 0 :
-            return ""
-        if num in list(self.roman_map.keys()):
-            return self.roman_map(num)
-        
+
+        for number in last_digit_list[::-1]:
+            if number == 0:
+                continue
+            
+            if number in roman_map.keys():
+                word_list.append(roman_map.get(number))
+                continue
+
+            if number > 1000 :
+                word_list.append('M' * (number/1000))
+            elif number >500 and number < 1000:
+                x=1000-number
+
+
+
+            
+
 
     
 
