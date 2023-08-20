@@ -43,15 +43,14 @@ class Solution:
 
         
         num_list=[]
+        reversed_dictionary={}
         dictionary_items=list(roman_dict.items())
         for key, value in dictionary_items[::-1]:
+            reversed_dictionary[value]=key
             if value in s:
                 num_list.append(value)
                 s=s.replace(value,'.')
     
-        reversed_dictionary={}
-        for key , value in roman_dict.items():
-            reversed_dictionary[value]=key
 
         num=0
         for roman_num in num_list:
