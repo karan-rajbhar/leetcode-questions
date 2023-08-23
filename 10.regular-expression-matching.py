@@ -30,14 +30,5 @@ class Solution:
         #         return True
             
 
-solution =  Solution()
-print(solution.isMatch("aa","a*"))
-
-def fib(n):
-    # Ideally check for negative n and throw an exception
-    if n == 0: return 1
-    if n == 1: return 1
-    return fib(n - 1) + fib(n - 2)
-print(fib(5))
 # @lc code=end
 

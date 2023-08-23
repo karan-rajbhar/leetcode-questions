@@ -7,7 +7,7 @@
 # @lc code=start
 class Solution:
     def romanToInt(self, s: str) -> int:
-        roman_dict = {
+        romanDict = {
             0:"",
             1: "I",
             2: "II",
@@ -42,20 +42,22 @@ class Solution:
         }
 
         
-        num_list=[]
-        reversed_dictionary={}
-        dictionary_items=list(roman_dict.items())
-        for key, value in dictionary_items[::-1]:
-            reversed_dictionary[value]=key
+        numList=[]
+        reversedDictionary={}
+        dictionaryItems=list(romanDict.items())
+        
+        for key, value in dictionaryItems[::-1]:
+            reversedDictionary[value]=key
+
             if value in s:
-                num_list.append(value)
+                numList.append(value)
                 s=s.replace(value,'.')
     
 
         num=0
-        for roman_num in num_list:
-            num_value = reversed_dictionary[roman_num]
-            num= num+num_value
+        for romanNum in numList:
+            numValue = reversedDictionary[romanNum]
+            num= num+numValue
 
         return num
 

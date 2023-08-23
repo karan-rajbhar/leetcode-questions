@@ -5,26 +5,27 @@
 #
 
 # @lc code=start
+from typing import List
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-            final_list = nums1 + nums2
-            final_list = sorted(final_list)
+            finalList = nums1 + nums2
+            finalList = sorted(finalList)
             
-            return self.find_middle(final_list)
+            return self.findMiddle(finalList)
 
-    def find_middle(self, num_list):
-        if not num_list :
+    def findMiddle(self, numList):
+        if not numList :
                 return "The List is empty"
-        length = len(num_list)
+        length = len(numList)
             
         if length % 2 != 0:
-                middle_index = length//2
-                return num_list[middle_index]
+                middleIndex = length//2
+                return numList[middleIndex]
         
-        first_middle_index = length //2-1
-        second_middle_index = length//2
+        firstMiddleIndex = length //2-1
+        secondMiddleIndex = length//2
 
-        return (num_list[first_middle_index]+num_list[second_middle_index])/2                  
+        return (numList[firstMiddleIndex]+numList[secondMiddleIndex])/2                  
                    
 
         

@@ -5,6 +5,7 @@
 #
 
 # @lc code=start
+from typing import List
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
             strs.sort(key=str.lower)

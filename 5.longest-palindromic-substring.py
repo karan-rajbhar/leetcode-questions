@@ -12,15 +12,15 @@ class Solution:
         if len(s) == 1 or self.checkIfPalindrome(s) :
             return s
 
-        for first_index in range(0, len(s)+1):
-            for second_index in range(0, len(s)+1):
-                current_string = s[first_index:second_index]
+        for firstIndex in range(0, len(s)+1):
+            for secondIndex in range(0, len(s)+1):
+                currentString = s[firstIndex:secondIndex]
                 if (
-                    self.checkIfPalindrome(current_string)
-                    and len(current_string) > len(longestPalindromeSubString)
+                    self.checkIfPalindrome(currentString)
+                    and len(currentString) > len(longestPalindromeSubString)
                     
                 ):
-                    longestPalindromeSubString = current_string
+                    longestPalindromeSubString = currentString
 
         return longestPalindromeSubString
 

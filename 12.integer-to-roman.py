@@ -8,7 +8,7 @@
 # @lc code=start
 class Solution:
     def intToRoman(self, num: int) -> str:
-        roman_dict = {
+        romanDict = {
             0:"",
             1: "I",
             2: "II",
@@ -41,13 +41,13 @@ class Solution:
             2000: "MM",
             3000: "MMM",
         }
-        tens_place=1
+        tensPlace=1
         wordList=[]
         while num > 0:
-            last_digit=num%10
-            last_digit_place = last_digit*tens_place 
-            wordList.append(roman_dict[last_digit_place])
-            tens_place = tens_place*10
+            lastDigit=num%10
+            lastDigitPlace = lastDigit*tensPlace 
+            wordList.append(romanDict[lastDigitPlace])
+            tensPlace = tensPlace*10
             num=int(num/10)
             
         return ''.join(wordList[::-1])
