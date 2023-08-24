@@ -5,39 +5,46 @@
 #
 
 # @lc code=start
-
 from typing import List
+from itertools import combinations
+
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-            threeSumList = []
-            numberOfTriplets = len(nums)//3
-            indexPositionDict={}
-            for i in range(1, numberOfTriplets+1):
-                triplets = []
-                index = 0
-                loopBreak=True
-                
-                while loopBreak:
-                    print(len(triplets))
-                    if len(triplets) == 3 and sum(triplets) == 0:
-                        loopBreak=False
-                    if triplets == []:
-                        triplets.append(nums[index])
-                        index+=1
-                        
-                    if len(triplets) == 2:
-                        remaining = 0 - sum(triplets)
-                        if nums[index] == remaining:
-                            triplets.append(nums[index])
-                    
-                    if len(triplets) == 1:
-                        triplets.append(nums[index])
+        if len(nums) < 3:
+            return []
 
-                    index+=1
-                    
-                        
-                threeSumList.append(triplets)
-                
-            return threeSumList        
+        result =set()
+        negative , positive ,zero = [] ,[] ,[]
+        
+        for num in nums:
+
+            if num > 0:
+                positive.append(num)
+            elif num < 0:
+                negative.append(num)
+            else:
+                zero.append(num)
+
+        negativeSet , positiveSet = set(negative) , set(positive)
+
+        if zero :
+            for num in positive:
+                if -1*num in negative:
+                    result.add((-1*num,0,num))
+            if len(zero) >=3:
+                result.add((0,0,0))
+
+        for x, y in combinations(negative, 2):
+            target = -1 * (x + y)
+            if target in positiveSet:
+                result.add(tuple(sorted([x, y, target])))
+
+        for x, y in combinations(positive, 2):
+            target = -1 * (x + y)
+            if target in negativeSet:
+                result.add(tuple(sorted([x, y, target])))
+        return result 
+
+solution = Solution()
+print(solution.threeSum([-1,0,1,2,-1,-4]))
 # @lc code=end
-
