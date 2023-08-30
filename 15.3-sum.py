@@ -45,6 +45,5 @@ class Solution:
                 result.add(tuple(sorted([x, y, target])))
         return result 
 
-solution = Solution()
-print(solution.threeSum([-1,0,1,2,-1,-4]))
+
 # @lc code=end
