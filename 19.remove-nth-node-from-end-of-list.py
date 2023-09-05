@@ -25,7 +25,7 @@ class Solution:
         slow=head
 
         for i in range(n):
-            print(fast)
+            
             fast=fast.next
 
         if not fast :
