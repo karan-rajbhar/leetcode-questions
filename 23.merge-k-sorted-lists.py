@@ -14,11 +14,12 @@ class ListNode:
         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if lists == []:
+        if not lists :
             return None
-        
+        if len(lists) == 1:
+            return lists[0]
+                
         result=lists[0]
-
         for i in range(1,len(lists)):
             result = self.mergeTwoLists(result,lists[i])
         return result
