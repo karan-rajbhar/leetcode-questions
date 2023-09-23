@@ -26,13 +26,6 @@ class Solution:
       while True:
         current= current.next
         count +=1
-
-
-
-
-
-
-
         fast=head
         slow=head
 
