@@ -23,33 +23,33 @@ class Solution:
         dummy = ListNode(0)
         dummy.next = head
         prev = dummy
-        while prev and prev.next:
-            
+        while prev and prev.next and prev.next.next:
+            # Node to be swapped
             first = head
             second = head.next
-
+            # Swapping
             prev.next = second
             first.next = second.next
             second.next = first
 
+            #Move Pointers for the next iteration
             prev = first
             head = first.next
             
         return dummy.next
 
 
-l1 = ListNode(1)
-l2 = ListNode(2)
-l3 = ListNode(3)
-l4 = ListNode(4)
-l1.next = l2
-l2.next = l3
-l3.next = l4
+# l1 = ListNode(1)
+# l2 = ListNode(2)
+# l3 = ListNode(3)
 
-solution = Solution()
-result = solution.swapPairs(l1)
+# l1.next = l2
+# l2.next = l3
 
-while(result):
-    print(result.val)
-    result=result.next
+# solution = Solution()
+# result = solution.swapPairs(l1)
+
+# while(result):
+#     print(result.val)
+#     result=result.next
 # @lc code=end
