@@ -37,6 +37,7 @@ class Solution:
             head = first.next
             
         return dummy.next
+    
 
 
 # l1 = ListNode(1)
