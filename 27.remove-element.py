@@ -7,6 +7,19 @@ from typing import List
 # @lc code=start
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
+        index = 0
+        for i in range(0,len(nums)):
+            if nums[i] != val:
+                nums[index] = nums[i]
+                index +=1
+        
+        return index
+
+
+
+
+
+    def removeElement1(self, nums: List[int], val: int) -> int:
     
         for i in range(0,len(nums)):
             if nums[i] == val:
