@@ -8,6 +8,7 @@
 # @lc code=start
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
+        print(s)
         if len(s) == 2 and not self.isValid(s):
             return 0
 
@@ -23,10 +24,10 @@ class Solution:
         if self.isValid(right):
             return len(right)
 
-        if self.longestValidParentheses(right):
-            return self.longestValidParentheses(right)
-
         if self.longestValidParentheses(left):
+            return self.longestValidParentheses(left)
+
+        if self.longestValidParentheses(right):
             return self.longestValidParentheses(left)
 
     def isValid(self, s: str) -> bool:
