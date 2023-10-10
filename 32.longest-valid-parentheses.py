@@ -8,46 +8,26 @@
 # @lc code=start
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
-        print(s)
-        if len(s) == 2 and not self.isValid(s):
-            return 0
-
-        if self.isValid(s):
-            return len(s)
-
-        left = s[1:]
-        right = s[:-1]
-
-        if self.isValid(left):
-            return len(left)
-
-        if self.isValid(right):
-            return len(right)
-
-        if self.longestValidParentheses(left):
-            return self.longestValidParentheses(left)
-
-        if self.longestValidParentheses(right):
-            return self.longestValidParentheses(left)
-
-    def isValid(self, s: str) -> bool:
         stack = []
-        for char in s:
-            if char == "(":
-                stack.append(char)
+        max_length = 0
+        start = -1
+
+        for i in range(len(s)):
+            print(start)
+            if s[i] == '(':
+                stack.append(i)
             else:
                 if not stack:
-                    return False
+                    start = i
+                else:
+                    stack.pop()
+                    if not stack:
+                        max_length = max(max_length, i - start)
+                    else:
+                        max_length = max(max_length, i - stack[-1])
 
-                current_stack_bracket = stack.pop()
-                if char == ")":
-                    if current_stack_bracket != "(":
-                        return False
-        if stack:
-            return False
-        return True
+        return max_length
 
-
-# solution = Solution()
-# print(solution.longestValidParentheses(s=")()())"))
+solution = Solution()
+print(solution.longestValidParentheses(s=")()())"))
 # @lc code=end
