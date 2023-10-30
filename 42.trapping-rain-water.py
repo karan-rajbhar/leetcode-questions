@@ -12,13 +12,13 @@ class Solution:
         result=0
 
         for point in points:
-            result +=self.calculate_rain(point[0], point[1])
+            result +=self.calculate_rain(point.first_point,point.second_point,point.diff)
         
         return result
     def find_gaps(self,height:List[int]):
         pass
 
-    def calculate_rain(self,point_one, point_two):
+    def calculate_rain(self,first_point, second_point, diff):
         pass        
 # @lc code=end
 
