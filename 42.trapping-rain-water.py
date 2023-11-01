@@ -20,19 +20,17 @@ class Solution:
         first_index=None
         second_index=None
         for index in range(len(height)):
-            if first_index is not None and second_index is not None :
-                if height[index] < height[second_index] :
-                    points.append((first_index,second_index))
-                    first_index=second_index
-                    second_index=None
-                    continue
-            if height[index] != 0 and first_index is None:
-                first_index=index
-                continue
-
-            if first_index is not None:
-                if height[index] > height[first_index]:
+            if height[index] > 0 and second_index is None:
+                first_index = index
+            
+            if height[index]>0 and first_index is not None:
+                if height[index] < height[first_index]:
                     second_index=index
+            
+            if height[index]>0 :
+                if first_index is not None and second_index is not None:
+                    points.append(first_index,second_index)
+
 
         return points
 
