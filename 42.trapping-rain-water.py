@@ -8,37 +8,24 @@
 from typing import List
 class Solution:
     def trap(self, height: List[int]) -> int:
-        points=self.find_gaps(height)
-        result=0
-        print(points)
-        for point in points:
-            result +=self.calculate_rain(point.first_index,point.second_index)
-        
-        return result
-    def find_gaps(self,height:List[int]):
-        points=[]
-        first_index=None
-        second_index=None
-        for index in range(len(height)):
-            if height[index] > 0 and second_index is None:
-                first_index = index
-            
-            if height[index]>0 and first_index is not None:
-                if height[index] < height[first_index]:
-                    second_index=index
-            
-            if height[index]>0 :
-                if first_index is not None and second_index is not None:
-                    points.append(first_index,second_index)
+            left, right = 0, len(height) - 1
+            leftMax = rightMax = trappedWater = 0
 
+            while left <= right:
+                leftMax = max(leftMax, height[left])
+                rightMax = max(rightMax, height[right])
 
-        return points
+                if leftMax <= rightMax:
+                    trappedWater += max(0, leftMax - height[left])
+                    left += 1
+                else:
+                    trappedWater += max(0, rightMax - height[right])
+                    right -= 1
 
-    def calculate_rain(self,first_index, second_index ):
-        pass  
+            return trappedWater
 
 solution = Solution()
-solution.trap([0,1,0,2,1,0,1,3,2,1,2,1])
+print(solution.trap([0,1,0,2,1,0,1,3,2,1,2,1]))
 
 # @lc code=end
 
