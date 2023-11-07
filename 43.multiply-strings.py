@@ -8,9 +8,8 @@
 # @lc code=start
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
-        if len(num1) ==1 or len(num2) ==1:
-            if ord(num1[0]) == 48 or ord(num2[0]) ==48:
-                return "0"
+        if num1 =='0' or num2== '0':
+            return "0"
 
 
         multi_array = []
