@@ -25,5 +25,7 @@ class Solution:
 
         return jumps
 
+solution = Solution()
+solution.jump([2,3,1,1,4])
 
 # @lc code=end
