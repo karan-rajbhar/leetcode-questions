@@ -18,10 +18,10 @@ class Solution:
             else:
                 result[temp] = [s]
 
-        return result.values()
+        return list(result.values())
 
 
-# solution = Solution()
-# solution.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+solution = Solution()
+print(solution.groupAnagrams(["eat","tea","tan","ate","nat","bat"])) 
 # @lc code=end
 
