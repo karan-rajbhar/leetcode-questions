@@ -6,7 +6,7 @@
 
 # @lc code=start
 from typing import List
-import itertools
+
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         
