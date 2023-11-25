@@ -19,6 +19,44 @@ class ListNode:
         self.next = next
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if head.next is None:
+            return True
+
+        slow=head
+        fast=head
+
+        while fast.next and fast.next.next:
+            slow=slow.next
+            fast=fast.next.next
+
+
+        reverse_half=self.reverseList(slow.next)    
+        curr=head
+        while True:
+            if reverse_half.val != curr.val:
+                return False                
+
+            curr=curr.next
+            if reverse_half.next:
+                reverse_half=reverse_half.next
+            else:
+                return True
+
+
+
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        node=None
+        
+        while head:
+            temp=head.next
+            head.next=node
+            node=head
+            head=temp
+        
+        return node
+
+
+    def isPalindrome2(self, head: Optional[ListNode]) -> bool:
         
         list_num=[]
         list_num.append(head.val)
