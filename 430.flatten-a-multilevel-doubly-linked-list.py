@@ -36,10 +36,38 @@ def print_list(node):
         node = node.next
     print('None')  # for newline after printing all nodes
 
+def is_valid_doubly_linked_list(head):
+    if not head:
+        return "Empty list is considered as a valid doubly linked list."
+
+    # Traverse from head to tail
+    prev = None
+    curr = head
+    while curr:
+        if prev != curr.prev:
+            return "Prev pointer is not correctly set."
+        prev = curr
+        curr = curr.next
+
+    tail = prev
+
+    # Traverse from tail to head
+    next_node = None
+    curr = tail
+    while curr:
+        if next_node != curr.next:
+            return "Next pointer is not correctly set."
+        next_node = curr
+        curr = curr.prev
+
+    if head != next_node:
+        return "Can't reach the original head from the tail."
+
+    return "It's a valid doubly linked list."
 
 class Solution:
     def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        if head.next is None:
+        if head is None :
             return head
         
         result_node=Node(0)
@@ -49,62 +77,71 @@ class Solution:
             if curr.child:
                 child=curr.child
                 flatted = self.flatten(child)
-                
-
-                node=Node(curr.val,curr,flatted)
-                print("printing flatted")
-                print_list(flatted)
+                next_curr=curr.next
+                curr.next=flatted
+                curr.child=None
+                flatted.prev=curr
                 result_node.next=curr
-                node.prev=result_node
-                
-                result_node.next=node
-                
+                result_node.child=None
                 while result_node.next:
+                    result_node.child=None
                     result_node=result_node.next
-                
-                curr=curr.next
+                curr=next_curr
             else:
                 curr.prev=result_node
+                curr.child=None
                 result_node.next=curr
                 result_node=result_node.next
                 curr=curr.next
-                
-            print("printing Result")
-            result_node_head.next.prev=None
-            print_list(result_node_head.next)
-
-            
+                            
+        result_node_head.next.prev=None
+        # print_list(result_node_head.next)
+        # message = is_valid_doubly_linked_list(result_node_head.next)
+        # print(message)
         return result_node_head.next
-# Creating the multilevel linked list
-node1 = Node(1)
-node2 = Node(2)
-node3 = Node(3)
-node4 = Node(4)
-node5 = Node(5)
-node6 = Node(6)
-node7 = Node(7)
-node8 = Node(8)
-node9 = Node(9)
-node10 = Node(10)
-node11 = Node(11)
-node12 = Node(12)
 
-node1.next = node2
-node2.next = node3
-node3.next = node4
-node4.next = node5
-node5.next = node6
 
-node2.child = node7
-node7.next = node8
-node8.next = node9
-node9.next = node10
+# # Creating the nodes
+# node1 = Node(1)
+# node2 = Node(2)
+# node3 = Node(3)
+# node4 = Node(4)
+# node5 = Node(5)
+# node6 = Node(6)
+# node7 = Node(7)
+# node8 = Node(8)
+# node9 = Node(9)
+# node10 = Node(10)
+# node11 = Node(11)
+# node12 = Node(12)
 
-node8.child = node11
-node11.next = node12
+# # Linking the nodes
+# node1.next = node2
+# node2.prev = node1
+# node2.next = node3
+# node3.prev = node2
+# node3.next = node4
+# node4.prev = node3
+# node4.next = node5
+# node5.prev = node4
+# node5.next = node6
+# node6.prev = node5
 
-solution = Solution()
-solution.flatten(node1)
+# node3.child = node7
+# node7.next = node8
+# node8.prev = node7
+# node8.next = node9
+# node9.prev = node8
+# node9.next = node10
+# node10.prev = node9
+
+# node8.child = node11
+# node11.next = node12
+# node12.prev = node11
+# # print_list(node1)
+# solution = Solution()
+# solution.flatten(node1)
+
 
 
 # @lc code=end
