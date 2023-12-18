@@ -12,16 +12,6 @@ class Solution:
         if '0000' in deadends:
             return -1
 
-        def children(lock):
-            res=[]
-            for i in range(4):
-                x= int(lock[i])
-                for d in (-1,1):
-                    y=(x+d)%10
-                    res.append(lock[:i]+str(y)+lock[i+1:])
-
-            return res
-        
         visited= set(deadends)
         queue= deque()
         queue.append(['0000',0])
@@ -31,13 +21,22 @@ class Solution:
             if lock == target:
                 return step
             
-            for child in children(lock):
+            for child in self.children(lock):
                 if child not in visited:
                     visited.add(child)
                     queue.append([child,step+1])
 
         return -1        
     
+    def children(self,lock):
+        res=[]
+        for i in range(4):
+            x= int(lock[i])
+            for d in (-1,1):
+                y=(x+d)%10
+                res.append(lock[:i]+str(y)+lock[i+1:])
+
+        return res
 
 
 # solution = Solution()
