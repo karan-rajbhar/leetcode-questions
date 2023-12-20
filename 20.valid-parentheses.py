@@ -7,27 +7,32 @@
 # @lc code=start
 class Solution:
     def isValid(self, s: str) -> bool:
+        if len(s)==0:
+            return True
+        if len(s)==1:
+            return False
         stack=[]
-        for char in s:
-            if char in ["{","[","("]:
-                stack.append(char)
+        for i in s:
+            if i in ["(","[","{"]:
+                stack.append(i)
             else:
                 if not stack:
                     return False
                 
-                current_stack_bracket=stack.pop()
-                if char == "}":
-                    if current_stack_bracket!='{':
+                if i == ")":
+                    if stack.pop() != "(":
                         return False
-                if char == "]":
-                    if current_stack_bracket!='[':
+                if i == "}":
+                    if stack.pop() != "{":
                         return False
-                if char == ")":
-                    if current_stack_bracket!='(':
+                if i == "]":
+                    if stack.pop() != "[":
                         return False
         if stack:
             return False
+        
         return True
+        
 
 solution= Solution()
 print(solution.isValid("(]"))
