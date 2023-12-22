@@ -8,8 +8,8 @@ from typing import List
 # @lc code=start       
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        # Define the operators
-        operators = ["+", "*", "-", "/"]
+        # Define the operators as a set
+        operators = {"+", "*", "-", "/"}
         
         # Initialize an empty stack
         stack = []
