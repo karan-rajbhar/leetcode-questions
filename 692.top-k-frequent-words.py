@@ -6,7 +6,7 @@
 import heapq
 from typing import List
 from collections import Counter
-from heapq import heappush, heappop, heapify
+from heapq import heapify
 
 # @lc code=start
 class Solution:
@@ -15,8 +15,7 @@ class Solution:
         result=[]
         min_heap=[(-freq , word) for word, freq in count.items()]
 
-        heapq.heapify(min_heap)
-
+        heapify(min_heap)
         for _ in range(k):
             result.append(heapq.heappop(min_heap)[1])
 
@@ -36,6 +35,8 @@ class Solution:
         list.sort(key=lambda x: (-x[1],x[0]))
 
         return [x[0] for x in list[:k]]
-        
+
+# solution = Solution()
+# solution.topKFrequent(["i", "love", "leetcode", "i", "love", "coding"], 2)
 # @lc code=end
 
