@@ -4,39 +4,35 @@
 # [210] Course Schedule II
 #
 from typing import List
+from collections import deque, defaultdict
 # @lc code=start
-from collections import deque
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         if prerequisites==[]:
             return [i for i in range(numCourses)]
-        graph={}
-        courses=set()        
-        for preq in prerequisites:
-            if preq[1] in graph:
-                graph[preq[1]].append(preq[0])
-            else:
-                graph[preq[1]]=[preq[0]]
-            courses.add(preq[0])
-            courses.add(preq[1])
+        graph = defaultdict(list)
+        in_degree = [0]*numCourses
+        for Course,Pre in prerequisites:
+            graph[Pre].append(Course)
+            in_degree[Course]+=1
         
-        for course in courses:
-            path=[]
-            visited=set()
-            course_stack = deque()
-            course_stack.append(course)
-            while course_stack:
-                current_course= course_stack.popleft()
-                if current_course not in visited:
-                    visited.add(current_course)
-                    path.append(current_course)
-                    
-                if graph.get(current_course):
-                    for node in graph[current_course]:
-                        if node not in visited:
-                            course_stack.append(node)
-                if len(path) == len(courses):
-                    return path
+        queue = deque()
+        for i in range(numCourses):
+            if in_degree[i]==0:
+                queue.append(i)
+        res = []
+
+        while queue:
+            cur = queue.popleft()
+            res.append(cur)
+            for next in graph[cur]:
+                in_degree[next]-=1
+                if in_degree[next]==0:
+                    queue.append(next)
+        
+        if len(res)==numCourses:
+            return res
+        
         return []
 
         
