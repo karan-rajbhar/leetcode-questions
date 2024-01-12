@@ -8,18 +8,19 @@ from typing import List
 class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
         count = 0
+        length = len(nums)
         if set(nums) == {1}:
             if k == 1:
                 return 0
             if k == 0:
                 return 0
             else:
-                return len(nums) * (len(nums) + 1) // 2
+                return length * (length + 1) // 2
         
-        for i in range(len(nums)):
+        for i in range(length):
             product = 1
             curr_index = i
-            while curr_index < len(nums):
+            while curr_index < length:
                 product *= nums[curr_index]
                 if product < k:
                     count += 1
