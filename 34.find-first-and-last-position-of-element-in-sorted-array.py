@@ -10,27 +10,72 @@ from typing import List
 # @lc code=start
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        if not nums:
-            return [-1, -1]
-        result = []
-        first = 0
-        last = len(nums) - 1
-        self.findTarget(first, last, nums, target, result)
-        if result:
-            return [result[0], result[-1]]
-
-        return [-1, -1]
-
-    def findTarget(self, i, j, num_list, target, result):
-        if num_list[i] == target:
-            result.append(i)
-
-        if i == j:
-            return -1
-
-        mid = int((i + j) / 2)
-        self.findTarget(i, mid, num_list, target, result)
-        self.findTarget(mid + 1, j, num_list, target, result)
+        
+        if len(nums)==0:
+            return [-1,-1]
+        
+        if len(nums) == 1:
+            if nums[0]==target:
+                return [0,0]
+            return [-1,-1]
+            
+        
+        left , right = 0, len(nums)-1
+        
+        while left +1 < right:
+            mid =(left+right)//2
+            
+            if nums[mid] == target:
+                first=mid
+                last=mid
+                while (first-1)>=0:
+                    if nums[first-1]==target:
+                        first=first-1
+                    else:
+                        break
+                while last+1<=len(nums)-1:
+                    if nums[last+1] == target:
+                        last = last+1
+                    else:
+                        break
+                return [first,last]
+            elif nums[mid]<target:
+                left=mid
+            else:
+                right= mid
+         
+        if nums[left] == target:
+            first=left
+            last=left
+            while (first-1)>=0:
+                if nums[first-1]==target:
+                    first=first-1
+                else:
+                    break
+            while last+1<=len(nums)-1:
+                if nums[last+1] == target:
+                    last = last+1
+                else:
+                    break
+            return [first,last]
+            
+        
+        if nums[right] == target:
+            first=right
+            last=right
+            while (first-1)>=0:
+                if nums[first-1]==target:
+                    first=first-1
+                else:
+                    break
+            while last+1<=len(nums)-1:
+                if nums[last+1] == target:
+                    last = last+1
+                else:
+                    break
+            return [first,last]
+        
+        return [-1,-1]
 
 
 # solution = Solution()
