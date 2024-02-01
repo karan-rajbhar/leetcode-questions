@@ -20,23 +20,11 @@ class Solution:
         if not head or not head.next:
             return head
 
-        dummy = ListNode(0)
-        dummy.next = head
-        prev = dummy
-        while prev and prev.next and prev.next.next:
-            # Node to be swapped
-            first = head
-            second = head.next
-            # Swapping
-            prev.next = second
-            first.next = second.next
-            second.next = first
-
-            #Move Pointers for the next iteration
-            prev = first
-            head = first.next
-            
-        return dummy.next
+        temp = head.next
+        head.next = self.swapPairs(temp.next)
+        temp.next = head
+        
+        return temp
     
 
 
