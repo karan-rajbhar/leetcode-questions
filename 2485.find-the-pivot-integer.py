@@ -4,24 +4,27 @@
 # [2485] Find the Pivot Integer
 #
 
+
 # @lc code=start
 class Solution:
+
     def pivotInteger(self, n: int) -> int:
-        if n==1:
+        if n == 1:
             return 1
-        for i in range(1, n):
-            if self.sumall(i) == self.sumrem(i,n):
+
+        def recursive(n, i):
+
+            if i > n:
+                return -1
+
+            if ((i * (i + 1)) // 2) == (n * (n + 1) // 2 - (i - 1) * (i) // 2):
                 return i
-        return -1
+            return recursive(n, i + 1)
 
-    def sumall(self, n):
-        return (n*(n+1))//2
-    
-    def sumrem(self,i,n):
-        high = max(i,n)
-        low = min(i,n)
+        return recursive(n, 1)
 
-        return (high*(high +1)//2 -(low-1)*(low)//2)        
-        
+
+
+# solution = Solution()
+# print(solution.pivotInteger(8))
 # @lc code=end
-
