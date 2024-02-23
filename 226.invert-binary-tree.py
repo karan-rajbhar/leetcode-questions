@@ -14,25 +14,8 @@ class TreeNode:
 
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if root is None:
-            return
-            
-        if root.left and root.right:
-            temp = root.left
-            root.left = root.right
-            root.right= temp
-            
-        elif root.left and root.right is None:
-            root.right=root.left
-            root.left =None
-        else:
-            root.left= root.right
-            root.right=None
-
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-
-        return  root
-        
+        if root:
+            root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+        return root        
 # @lc code=end
 
