@@ -21,8 +21,8 @@ class Solution:
         if cost[dst] == float('inf'):
             return -1
         else:
-            return cost[dst]
+            return cost [dst]
 
 
-solution = Solution()
-print(solution.findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 1)) # 200
+# solution = Solution()
+# print(solution.findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 1)) # 200
