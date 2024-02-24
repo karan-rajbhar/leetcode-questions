@@ -9,12 +9,10 @@ import queue
 from typing import List
 from collections import defaultdict
 
-
 class Solution:
     def findAllPeople(
         self, n: int, meetings: List[List[int]], firstPerson: int
     ) -> List[int]:
-
         dict_meeting = defaultdict(set)
 
         for i in meetings:
@@ -27,12 +25,14 @@ class Solution:
         secret_shared = set({0, firstPerson})
 
         while not priority_queue.empty():
-            priority, persons = priority_queue.get()
+            priority, meetings = priority_queue.get()
 
+            # print(f"secret_shared: {secret_shared}")
+            # print(f"priority: {priority}, persons: {persons}")
 
             graph = defaultdict(set)
             people = set()
-            for person in persons:
+            for person in meetings:
                 graph[person[0]].add(person[1])
                 graph[person[1]].add(person[0])
                 people.add(person[0])
@@ -40,12 +40,10 @@ class Solution:
 
             # find all the connected staring from firstPerson
             if not secret_shared.isdisjoint(people):
-                intersect = secret_shared.intersection(people)
-
-                for person in intersect:
-
-                    visited = set()
-                    pipe = [person]
+                people_intersected = secret_shared.intersection(people)
+                pipe = list(people_intersected)
+                visited = set()
+                for person in people_intersected:
                     while pipe:
                         node = pipe.pop(0)
                         if node not in visited:
