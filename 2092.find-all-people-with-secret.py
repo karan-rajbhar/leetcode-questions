@@ -14,10 +14,10 @@ class Solution:
     def findAllPeople(
         self, n: int, meetings: List[List[int]], firstPerson: int
     ) -> List[int]:
-        sorted_meeting = sorted(meetings, key=lambda x: x[2])
+
         dict_meeting = defaultdict(set)
 
-        for i in sorted_meeting:
+        for i in meetings:
             dict_meeting[i[2]].add((i[0], i[1]))
 
         priority_queue = queue.PriorityQueue()
@@ -29,8 +29,6 @@ class Solution:
         while not priority_queue.empty():
             priority, persons = priority_queue.get()
 
-            # print(f"secret_shared: {secret_shared}")
-            # print(f"priority: {priority}, persons: {persons}")
 
             graph = defaultdict(set)
             people = set()
