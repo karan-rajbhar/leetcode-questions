@@ -9,12 +9,6 @@ import math
 from typing import List
 from collections import deque
 
-class Node:
-    def __init__(self, data):
-        self.item = data
-        self.next = None
-        self.prev = None
-
 class Solution:
     def canTraverseAllPairs(self, nums: List[int]) -> bool:
     
