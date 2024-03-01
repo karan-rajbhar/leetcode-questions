@@ -25,26 +25,28 @@ class Solution:
 
             if node is None:
                 continue
-            
+            values = level_dict[count]
+
+            if len(values) > 0:
+                if count%2 == 0:
+                    if node.val <= values.pop() or node.val%2 == 0:
+                        return False
+                else:
+                    if node.val >= values.pop() or node.val%2 == 1:
+                        return False
+            else:
+                if count %2 ==0:
+                    if node.val %2==0:
+                        return False
+                else:
+                    if node.val %2 ==1:
+                        return False
+                    
             level_dict[count].append(node.val)
 
             queue.append((node.left , count+1))
             queue.append((node.right , count+1))
-
-        for level , values in level_dict.items():
-            for i, value in enumerate(values):
-                if level%2 == 0:
-                    if value%2 == 0:
-                        return False
-                    if i>0 and value<=values[i-1]:
-                        return False
-                else:
-                    if value%2 != 0:
-                        return False
-                    if i>0 and value>=values[i-1]:
-                        return False
-                
-        return True
         
+        return True        
 # @lc code=end
 
