@@ -3,32 +3,41 @@
 #
 # [10] Regular Expression Matching
 #
-
+from collections import deque
 # @lc code=start
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
+        #Top down approach
+        memo={ }
+        def dfs(i,j):
+            if (i,j) in memo:
+                return memo[(i,j)]
+            if i >= len(s) and j >= len(p):
+                return True
+            if j >= len(p):
+                return False
+            
+            match =i < len(s) and (s[i] == p[j] or p[j] == '.') 
 
-        wildCardPresent =  False
+            if (j+1) < len(p) and p[j+1] == "*":
+                memo[(i,j)] = (dfs(i, j+2) or (match and dfs(i+1, j)))
 
-        if len(p) == 2 and '*' in p  and '.' in p:
-            return True 
-        if '*' in p or '.' in p:
-            wildCardPresent = True
+                return memo[(i,j)]
+            if match:
+                memo[(i,j)]=dfs(i+1, j+1)
 
-        if not wildCardPresent and s != p:
-            return  False
-        
+                return memo[(i,j)]
+            
+            memo[(i,j)]=False
+            
+            return False
+
+        return dfs(0,0) 
+
 
 
             
 
-
-        # if positionStar != -1 and positionDot == -1:
-        #     tempPattern = p[0:positionStar]
-        #     tempString = s[0:positionStar]
-        #     if tempPattern ==  tempString:
-        #         return True
-            
 
 # @lc code=end
 
