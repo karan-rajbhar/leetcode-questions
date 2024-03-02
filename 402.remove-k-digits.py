@@ -18,15 +18,6 @@ class Solution:
             stack.append(char)
 
         stack = stack[: len(stack) - k]
-        index = 0
-        for i, char in enumerate(stack):
-            if stack[i] != "0":
-                index = i
-                break
-            if i == len(stack) - 1:
-                index = i
-
-        return "".join(stack[index:]) if stack else "0"
-
+        return "".join(stack).lstrip('0') or "0"
 
 # @lc code=end
