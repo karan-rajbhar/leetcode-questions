@@ -11,28 +11,26 @@ class ListNode:
         self.val = x
         self.next = None
 
-class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        
-        if head is None or head.next is None:
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        if head is None:
             return False
-        
-        if head.next.next is None:
+        slow = head
+        if head.next is not None:
+            fast =head.next
+        else:
             return False
-        
-        slow=head
-        fast=head.next
-        
-        while slow.next is not None and fast.next is not None:
-            if slow == fast:
+        while fast and fast.next:
+            if fast == slow:
                 return True
-            
-            slow=slow.next
-            if fast.next.next is None:
-                return False
+            slow= slow.next
             fast=fast.next.next
         
         return False
-                
+
 # @lc code=end
 
