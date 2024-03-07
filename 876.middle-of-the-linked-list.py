@@ -12,17 +12,26 @@ class ListNode:
         self.next = None
 
 
+
 class Solution(object):
     def middleNode(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
         """
-        current=head
-        while current and head and head.next:
-            current=current.next
-            head=head.next.next
+        fast = head
+        node_count=0
+
         
-        return current
+        while fast:
+            fast=fast.next
+            node_count+=1
+        
+        
+        slow = head
+        for i in range(0, (node_count//2)):
+            slow=slow.next
+        
+        return slow
 # @lc code=end
 
