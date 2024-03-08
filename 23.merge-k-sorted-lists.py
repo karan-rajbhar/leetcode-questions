@@ -13,7 +13,6 @@ class ListNode:
         self.val = val
         self.next = next
 
-
 class Solution(object):
     def mergeKLists(self, lists):
         """
