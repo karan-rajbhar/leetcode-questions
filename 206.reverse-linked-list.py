@@ -12,29 +12,46 @@ class ListNode:
         self.val = val
         self.next = next
 
-class Solution:
-    # Iterative
-    def reverseListIterative(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        node=None
+# class Solution:
+#     # Iterative
+#     def reverseListIterative(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         node=None
         
-        while head:
-            temp=head.next
-            head.next=node
-            node=head
-            head=temp
+#         while head:
+#             temp=head.next
+#             head.next=node
+#             node=head
+#             head=temp
         
-        return node
+#         return node
     
-    #recursive
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head or not head.next:
-            return head
+#     #recursive
+#     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         if not head or not head.next:
+#             return head
 
-        node = self.reverseList(head.next)
-        head.next.next = head
-        head.next = None
-        return node        
-        
+#         node = self.reverseList(head.next)
+#         head.next.next = head
+#         head.next = None
+#         return node        
+
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        result_node = None
+        curr = head
+        while curr:
+            temp = curr.next
+            curr.next = result_node
+            result_node = curr
+            curr = temp
+
+        return result_node
+
+
 solution = Solution()
 solution.reverseList(ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5))))))
 
