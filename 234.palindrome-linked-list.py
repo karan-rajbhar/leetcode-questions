@@ -18,7 +18,46 @@ class ListNode:
         self.val = val
         self.next = next
 class Solution:
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        
+    def isPalindrome(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        count=0
+        temp = head
+        while temp:
+            temp =temp.next
+            count+=1
+
+        fast = head
+        for _ in range(0,count//2):
+            fast=fast.next
+        
+        fast = self.reverse(fast)
+        slow = head
+        while fast:
+            if slow.val != fast.val:
+                return False
+            
+            slow = slow.next
+            fast = fast.next
+
+        return True
+
+    def reverse(self,pointer):
+        prev = None
+        current = pointer
+        while(current is not None):
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        pointer = prev
+
+        return pointer
+    
+    def isPalindromeOld(self, head: Optional[ListNode]) -> bool:
         if head.next is None:
             return True
 
