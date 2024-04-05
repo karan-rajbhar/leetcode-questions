@@ -14,11 +14,12 @@ class Solution(object):
         stack = []
 
         for char in s:
-            if stack and abs(ord(char) - ord(stack[-1])) == 32:
-                stack.pop()
-            else:
-                stack.append(char)
-
-        return "".join(stack)        
+            if stack:
+                if char.lower() == stack[-1].lower() and char != stack[-1]:
+                    stack.pop()
+                    continue
+            stack.append(char)
+            
+        return "".join(stack) 
 # @lc code=end
 
