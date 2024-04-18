@@ -52,7 +52,32 @@ class Solution:
             result_node.next=node
         
         return result_node_head.next
+
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        carry = 0
+        dummy = ListNode()  # Dummy node to simplify list manipulation
+        result = dummy
+        num1, num2 = l1, l2
+
+        while num1 or num2 or carry:
+            # Sum the digits along with any carry
+            addition = carry
+            if num1:
+                addition += num1.val
+                num1 = num1.next
+            if num2:
+                addition += num2.val
+                num2 = num2.next
             
+            # Update carry
+            carry = addition // 10
+            
+            # Update result list
+            result.next = ListNode(val=addition % 10)
+            result = result.next
+
+        return dummy.next  # Skip the dummy node
+      
             
                     
 # @lc code=end
